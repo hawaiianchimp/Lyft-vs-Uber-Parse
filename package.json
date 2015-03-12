@@ -1,0 +1,28 @@
+{
+  "name": "lyft-vs-uber",
+  "version": "1.0.0",
+  "description": "application for calculating lyft and uber rides",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha test",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hawaiianchimp/Lyft-vs-Uber.git"
+  },
+  "keywords": [
+    "lyft",
+    "uber"
+  ],
+  "author": "Sean Burke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hawaiianchimp/Lyft-vs-Uber/issues"
+  },
+  "homepage": "https://github.com/hawaiianchimp/Lyft-vs-Uber",
+  "dependencies": {
+    "express": "^4.12.2",
+    "phantomjs": "^1.9.16"
+  }
+}
