@@ -23,6 +23,5 @@
   "homepage": "https://github.com/hawaiianchimp/Lyft-vs-Uber",
   "dependencies": {
     "express": "^4.12.2",
-    "phantomjs": "^1.9.16"
   }
 }
