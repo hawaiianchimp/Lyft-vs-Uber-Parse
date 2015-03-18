@@ -130,12 +130,48 @@ Parse.Cloud.job("updatePrices", function(request, status){
 								}
 
 								Array.prototype.forEach.call(response.data, function(e,i){
+									var compareItem = priceList[e.service+"-"+e.size];
 									var addPrice = new Price(e);
 									addPrice.set("city", city);
 									addPrice.set("city_name", city.get("name"));
-									//prices.add(addPrice);
-									priceList[e.service+"-"+e.size] = addPrice;
 									console.log("priceList[" + e.service+"-"+e.size+"] = addPrice;");
+
+									if(compareItem != null){
+										var change_detected = 1;
+										if(compareItem.base != e.base){
+											change_detected++;
+										}
+										if(compareItem.minute != e.minute){
+											change_detected++;
+										}
+										if(compareItem.mile != e.mile){
+											change_detected++;
+										}
+										if(compareItem.extra != e.extra){
+											change_detected++;
+										}
+										if(compareItem.minimum != e.minimum){
+											change_detected++;
+										}
+										if(compareItem.disclaimer_airport != e.disclaimer_airport){
+											change_detected++;
+										}
+										if(compareItem.disclaimer_tolls != e.disclaimer_tolls){
+											change_detected++;
+										}
+										if(compareItem.disclaimer_city != e.disclaimer_city){
+											change_detected++;
+										}
+										if(change_detected > 1){
+											if((e.base + e.minute + e.mile + e.extra + e.minimum) > 0){
+												console.log("change detected, updating price");
+												priceList[e.service+"-"+e.size] = addPrice;									
+											}
+										}
+									}
+									else{
+										console.log("No changes detected, not storing information");
+									}
 								});
 
 						    	console.log("building prices list for city "+ city.get("name")+" from source: " + response.data.length + " items");
