@@ -138,39 +138,56 @@ Parse.Cloud.job("updatePrices", function(request, status){
 
 									if(compareItem != null){
 										var change_detected = 1;
-										if(compareItem.base != e.base){
+										console.log("base:" + compareItem.get("base") + "=" + e.base);
+										if(compareItem.get("base") != e.base){
 											change_detected++;
+											console.log("base price changed");
 										}
-										if(compareItem.minute != e.minute){
+										console.log("minute:" + compareItem.get("minute") + "=" + e.minute);
+										if(compareItem.get("minute") != e.minute){
 											change_detected++;
+											console.log("minute price changed");
 										}
-										if(compareItem.mile != e.mile){
+										console.log("mile:" + compareItem.get("mile") + "=" + e.mile);
+										if(compareItem.get("mile") != e.mile){
 											change_detected++;
+											console.log("mile price changed");
 										}
-										if(compareItem.extra != e.extra){
+										console.log("extra:" + compareItem.get("extra") + "=" + e.extra);
+										if(compareItem.get("extra") != e.extra){
 											change_detected++;
+											console.log("extra price changed");
 										}
-										if(compareItem.minimum != e.minimum){
+										console.log("minimum:" + compareItem.get("minimum") + "=" + e.minimum);
+										if(compareItem.get("minimum") != e.minimum){
 											change_detected++;
+											console.log("minimum price changed");
 										}
-										if(compareItem.disclaimer_airport != e.disclaimer_airport){
+										console.log("disclaimer_airport:" + compareItem.get("disclaimer_airport") + "=" + e.disclaimer_airport);
+										if(compareItem.get("disclaimer_airport") != e.disclaimer_airport){
 											change_detected++;
+											console.log("airport disclaimer changed");
 										}
-										if(compareItem.disclaimer_tolls != e.disclaimer_tolls){
+										console.log("disclaimer_tolls:" + compareItem.get("disclaimer_tolls") + "=" + e.disclaimer_tolls);
+										if(compareItem.get("disclaimer_tolls") != e.disclaimer_tolls){
 											change_detected++;
+											console.log("tolls disclaimer changed");
 										}
-										if(compareItem.disclaimer_city != e.disclaimer_city){
+										console.log("disclaimer_city:" + compareItem.get("disclaimer_city") + "=" + e.disclaimer_city);
+										if(compareItem.get("disclaimer_city") != e.disclaimer_city){
 											change_detected++;
+											console.log("city disclaimer changed");
 										}
+
 										if(change_detected > 1){
 											if((e.base + e.minute + e.mile + e.extra + e.minimum) > 0){
 												console.log("change detected, updating price");
 												priceList[e.service+"-"+e.size] = addPrice;									
 											}
 										}
-									}
-									else{
-										console.log("No changes detected, not storing information");
+										else{
+											console.log("No changes detected, not storing information");
+										}
 									}
 								});
 
