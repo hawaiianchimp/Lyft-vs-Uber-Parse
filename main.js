@@ -118,8 +118,8 @@ Parse.Cloud.job("updatePrices", function(request, status){
 									console.log(objectsInPrices.length +" current prices");
 
 									for (var i = objectsInPrices.length - 1; i >= 0; i--) {
-										console.log("priceList[" + objectsInPrices[i].get("service")+"-"+objectsInPrices[i].get("size")+"] = objectsInPrices[i];");
-										priceList[objectsInPrices[i].get("service")+"-"+objectsInPrices[i].get("size")] = objectsInPrices[i];
+										console.log("priceList[" + objectsInPrices[i].get("service")+"-"+objectsInPrices[i].get("vehicle")+"] = objectsInPrices[i];");
+										priceList[objectsInPrices[i].get("service")+"-"+objectsInPrices[i].get("vehicle")] = objectsInPrices[i];
 									};
 									console.log("priceList built");
 
@@ -130,11 +130,11 @@ Parse.Cloud.job("updatePrices", function(request, status){
 								}
 
 								Array.prototype.forEach.call(response.data, function(e,i){
-									var compareItem = priceList[e.service+"-"+e.size];
+									var compareItem = priceList[e.service+"-"+e.vehicle];
 									var addPrice = new Price(e);
 									addPrice.set("city", city);
 									addPrice.set("city_name", city.get("name"));
-									console.log("priceList[" + e.service+"-"+e.size+"] = addPrice;");
+									console.log("priceList[" + e.service+"-"+e.vehicle+"] = addPrice;");
 
 									if(compareItem != null){
 										var change_detected = 1;
@@ -182,7 +182,7 @@ Parse.Cloud.job("updatePrices", function(request, status){
 										if(change_detected > 1){
 											if((e.base + e.minute + e.mile + e.extra + e.minimum) > 0){
 												console.log("change detected, updating price");
-												priceList[e.service+"-"+e.size] = addPrice;									
+												priceList[e.service+"-"+e.vehicle] = addPrice;									
 											}
 										}
 										else{
